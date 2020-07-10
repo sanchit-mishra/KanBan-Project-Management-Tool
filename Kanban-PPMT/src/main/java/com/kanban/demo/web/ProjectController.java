@@ -1,16 +1,12 @@
 package com.kanban.demo.web;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +41,19 @@ public class ProjectController {
 	@GetMapping("/{projectId}")
 	public ResponseEntity<?> findByProjectId(@PathVariable String projectId){
 		Project project = projectService.findProjectByIdentifier(projectId);
-		return new ResponseEntity<Project>(project,HttpStatus.OK);
+		return new ResponseEntity<Project>(project, HttpStatus.OK);
 	}
+	
+	@GetMapping("/all")
+	public Iterable<Project> findAllProject(){
+		return projectService.findProjects();
+	}
+	
+	@DeleteMapping("/{projectId}")
+	public ResponseEntity<?> deleteProject(@PathVariable String projectId){
+		projectService.deleteProject(projectId);
+		
+		return new ResponseEntity<String>("Project Identifier "+ projectId + " is deleted", HttpStatus.OK);
+	}
+	
 }
