@@ -5,7 +5,10 @@ const initialState = {};
 export default function (state = initialState, action) {
   switch (action.types) {
     case GET_ERRORS:
-      return action.payload;
+      return {
+        ...state,
+        errors: action.payload,
+      };
 
     default:
       return state;
