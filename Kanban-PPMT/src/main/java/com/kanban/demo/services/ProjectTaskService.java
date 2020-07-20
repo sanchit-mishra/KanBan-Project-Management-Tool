@@ -35,9 +35,9 @@ public class ProjectTaskService {
 		projectTask.setProjectIdentifier(projectIdentifier);
 		
 		//Initial priority when priority is null
-//		if(projectTask.getPriority() == 0 || projectTask.getPriority() == null) {
-//			projectTask.setPriority(3);
-//		}
+		if(projectTask.getPriority() == null) { 
+			projectTask.setPriority(3);
+		}
 		
 		//Initial status when status is null
 		if(projectTask.getStatus() == "" || projectTask.getStatus() == null) {
