@@ -3,6 +3,7 @@ package com.kanban.demo.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.kanban.demo.domain.Backlog;
@@ -69,8 +70,32 @@ public class ProjectTaskService {
 
 		Project project = projectRepository.findByProjectIdentifier(backlog_id);
 		if(project == null) {
-			throw new ProjectNotFoundException("Project with ID "+ backlog_id + " does not exists");
+			throw new ProjectNotFoundException("Project with ID "+ backlog_id + " does not exist");
 		}
 		return projectTaskRepository.findByProjectIdentifierOrderByPriority(backlog_id);
+	}
+
+	public ProjectTask getSingleProjectTask(String backlog_id, String project_id){
+		
+		Backlog backlog = backlogRepository.findByProjectIdentifier(backlog_id);
+		
+		//To check if backlog exists or not
+		if(backlog == null) {
+			throw new ProjectNotFoundException("Project with ID '"+ backlog_id + "' does not exist");
+		}
+		
+		//To check if ProjectTask exits or not
+		ProjectTask projectTask = projectTaskRepository.findByProjectSequence(project_id);
+		if(projectTask == null) {
+			throw new ProjectNotFoundException("Project Task with ID '"+ project_id + "' does not exist");
+		}
+		//To check if backlog/projectTask path is correct or not
+		if(!projectTask.getProjectIdentifier().equals(backlog_id)) {
+//			System.out.println(backlog.getProjectIdentifier());
+//			System.out.println(projectTask.getProjectIdentifier());
+			throw new ProjectNotFoundException("Project Task with this ID "+ project_id + " does not exist for this backlog ID: "+ backlog_id);
+	}
+		
+		return projectTaskRepository.findByProjectSequence(project_id);
 	}
 }
