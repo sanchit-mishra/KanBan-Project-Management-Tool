@@ -27,11 +27,11 @@ public class Backlog {
 	private String projectIdentifier;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "project_id",nullable = false)
+	@JoinColumn(name = "project_id", updatable = false, nullable = false)
 	@JsonIgnore
 	private Project project;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "backlog",orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH, mappedBy = "backlog",orphanRemoval = true)
 	private List<ProjectTask> projectTasks = new ArrayList<>();
 	
 	public Backlog() {
