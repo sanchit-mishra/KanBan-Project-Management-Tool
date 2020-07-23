@@ -75,7 +75,7 @@ public class ProjectTaskService {
 		return projectTaskRepository.findByProjectIdentifierOrderByPriority(backlog_id);
 	}
 
-	public ProjectTask getSingleProjectTask(String backlog_id, String project_id){
+	public ProjectTask findPTByProjectSequence(String backlog_id, String project_id){
 		
 		Backlog backlog = backlogRepository.findByProjectIdentifier(backlog_id);
 		
@@ -96,6 +96,14 @@ public class ProjectTaskService {
 			throw new ProjectNotFoundException("Project Task with this ID "+ project_id + " does not exist for this backlog ID: "+ backlog_id);
 	}
 		
-		return projectTaskRepository.findByProjectSequence(project_id);
+		return projectTask;
+	}
+
+	public ProjectTask updatePTByProjectSequence(ProjectTask updateProjectTask, String backlog_id, String project_id){
+
+		ProjectTask projectTask = findPTByProjectSequence(backlog_id,project_id);
+
+		projectTask = updateProjectTask;
+		return projectTaskRepository.save(projectTask);
 	}
 }
