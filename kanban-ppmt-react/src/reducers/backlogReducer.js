@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   project_tasks: [],
-  project: {},
+  project_task: {},
 };
 
 export default function (state = initialState, action) {
