@@ -1,5 +1,4 @@
 import { GET_PROJECTS, GET_PROJECT, DELETE_PROJECT } from "../actions/types";
-import { act } from "react-dom/test-utils";
 
 const initialState = {
   projects: [],
