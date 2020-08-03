@@ -34,6 +34,7 @@ public class ProjectTaskService {
 		try {
 			//PTs to be added to a specific project, project != null , BL exists
 			Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier);
+
 			//set BL to PT
 			projectTask.setBacklog(backlog);
 			// ProjectSequence like :-TEST1-1, TEST1-2 ... so on!
@@ -49,7 +50,7 @@ public class ProjectTaskService {
 			projectTask.setProjectIdentifier(projectIdentifier);
 
 			//Initial priority when priority is null
-			if(projectTask.getPriority() == null) { 
+			if(projectTask.getPriority() == 0 ||  projectTask.getPriority() == null) {
 				projectTask.setPriority(3);
 			}
 
