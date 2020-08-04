@@ -22,5 +22,4 @@ class ProjectTask extends Component {
     );
   }
 }
-
 export default ProjectTask;

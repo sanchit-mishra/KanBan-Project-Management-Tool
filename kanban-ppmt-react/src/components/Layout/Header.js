@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Header extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-secondary mb-4">
         <div className="container">
           <a className="navbar-brand" href="Dashboard.html">
             Personal Project Management Tool
@@ -14,7 +14,7 @@ class Header extends Component {
             data-toggle="collapse"
             data-target="#mobile-nav"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon" />
           </button>
 
           <div className="collapse navbar-collapse" id="mobile-nav">
@@ -25,13 +25,14 @@ class Header extends Component {
                 </a>
               </li>
             </ul>
+
             <ul className="navbar-nav ml-auto">
-              <li className="navbar-item">
-                <a className="nav-link" href="register.html">
+              <li className="nav-item">
+                <a className="nav-link " href="register.html">
                   Sign Up
                 </a>
               </li>
-              <li className="navbar-item">
+              <li className="nav-item">
                 <a className="nav-link" href="login.html">
                   Login
                 </a>
