@@ -17,7 +17,7 @@ class AddProjectTask extends Component {
       priority: 0,
       dueDate: "",
       projectIdentifier: id,
-      errors: {}
+      errors: {},
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -42,7 +42,7 @@ class AddProjectTask extends Component {
       acceptanceCriteria: this.state.acceptanceCriteria,
       status: this.state.status,
       priority: this.state.priority,
-      dueDate: this.state.dueDate
+      dueDate: this.state.dueDate,
     };
     this.props.addProjectTask(
       this.state.projectIdentifier,
@@ -69,7 +69,7 @@ class AddProjectTask extends Component {
                   <input
                     type="text"
                     className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.summary
+                      "is-invalid": errors.summary,
                     })}
                     name="summary"
                     placeholder="Project Task summary"
@@ -121,7 +121,7 @@ class AddProjectTask extends Component {
                     onChange={this.onChange}
                   >
                     <option value="">Select Status</option>
-                    <option value="TO_DO">TO DO</option>
+                    <option value="TO-DO">TO DO</option>
                     <option value="IN_PROGRESS">IN PROGRESS</option>
                     <option value="DONE">DONE</option>
                   </select>
@@ -142,14 +142,11 @@ class AddProjectTask extends Component {
 
 AddProjectTask.propTypes = {
   addProjectTask: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  errors: state.errors
+const mapStateToProps = (state) => ({
+  errors: state.errors,
 });
 
-export default connect(
-  mapStateToProps,
-  { addProjectTask }
-)(AddProjectTask);
+export default connect(mapStateToProps, { addProjectTask })(AddProjectTask);
