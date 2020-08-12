@@ -1,6 +1,7 @@
 package com.kanban.demo.services;
 
 import com.kanban.demo.domain.User;
+import com.kanban.demo.exceptions.UsernameException;
 import com.kanban.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,11 +17,14 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public User saveUser(User newUser){
-        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
-        //UserName should be unique
-        //Password and confirm Password should match
-        //We don't persist or show the confirmPassword
+        try{
+            newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+            newUser.setUsername(newUser.getUsername()); //Exception Handling
+            return userRepository.save(newUser);
 
-        return userRepository.save(newUser);
+        } catch (Exception ex){
+            throw new UsernameException("Username '" + newUser.getUsername() + "' already exists ");
+        }
+
     }
 }
