@@ -1,6 +1,7 @@
 package com.kanban.demo.services;
 
 import com.kanban.demo.domain.User;
+import com.kanban.demo.exceptions.ProjectNotFoundException;
 import com.kanban.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -49,26 +50,26 @@ public class ProjectService {
 	
 	}
 	
-	public Project findProjectByIdentifier(String projectId) {
+	public Project findProjectByIdentifier(String projectId, String username) {
 		Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
 		
 		if(project == null) {
 			throw new ProjectIdException("Project ID "+ projectId +" does not exists");
 		}
+
+		if(!project.getProjectLeader().equals(username)){
+			throw new ProjectNotFoundException("Project ID "+ projectId + " is not in your account");
+		}
 		return project;
 	}
 	
-	public Iterable<Project> findProjects(){
-		return projectRepository.findAll();
+	public Iterable<Project> findProjects(String username){
+		return projectRepository.findAllByProjectLeader(username);
 	}
 	
-	public void deleteProject(String projectId) {
-		Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
-		
-		if(project == null) {
-			throw new ProjectIdException("Project Identifier "+ projectId + " does not exist to be deleted");
-		}
-		projectRepository.delete(project);
+	public void deleteProject(String projectId, String username) {
+
+		projectRepository.delete(findProjectByIdentifier(projectId,username));
 	}
 		
 }
