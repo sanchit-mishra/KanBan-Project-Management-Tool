@@ -19,6 +19,8 @@ import com.kanban.demo.domain.Project;
 import com.kanban.demo.services.MapValidationErrorService;
 import com.kanban.demo.services.ProjectService;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/api/project")
 @CrossOrigin
@@ -31,12 +33,12 @@ public class ProjectController {
 	private MapValidationErrorService mapValidationError;
 	
 	@PostMapping("")
-	public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result){
+	public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result, Principal principal){
 		
 		ResponseEntity<?> errorMap = mapValidationError.MapValidationError(result);
 		if(errorMap != null) return errorMap;
 		
-		Project project1 = projectService.saveOrUpdate(project);
+		Project project1 = projectService.saveOrUpdate(project,principal.getName());
 		return new ResponseEntity<Project>(project1, HttpStatus.CREATED);
 	}
 

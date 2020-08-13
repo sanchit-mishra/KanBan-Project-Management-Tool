@@ -1,5 +1,7 @@
 package com.kanban.demo.services;
 
+import com.kanban.demo.domain.User;
+import com.kanban.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,10 +20,15 @@ public class ProjectService {
 	
 	@Autowired
 	private BacklogRepository backlogRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 	
-	
-	public Project saveOrUpdate(Project project) {
+	public Project saveOrUpdate(Project project, String username) {
 		try {
+			User user = userRepository.findByUsername(username);
+			project.setUser(user);
+			project.setProjectLeader(user.getUsername());
 			project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
 			
 			if(project.getId() == null) {
