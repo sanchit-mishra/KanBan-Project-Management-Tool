@@ -1,5 +1,6 @@
 package com.kanban.demo.web;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -27,19 +28,19 @@ public class ProjectTaskController {
 
 	@PostMapping("/{backlog_id}")
 	public ResponseEntity<?> addPTtoBacklog(@Valid @RequestBody ProjectTask projectTask
-			, BindingResult result, @PathVariable String backlog_id){
+			, BindingResult result, @PathVariable String backlog_id, Principal principal){
 		ResponseEntity<?> errorMap = mapValidationError.MapValidationError(result);
 		if(errorMap != null) return errorMap;
 
-		ProjectTask projectTaskObj = projectTaskService.addProjectTask(backlog_id, projectTask);
+		ProjectTask projectTaskObj = projectTaskService.addProjectTask(backlog_id, projectTask, principal.getName());
 		return new ResponseEntity<ProjectTask>(projectTaskObj,HttpStatus.CREATED);
 
 	}
 
 	@GetMapping("/{backlog_id}")
-	public Iterable<ProjectTask> getBacklogById(@PathVariable String backlog_id){
+	public Iterable<ProjectTask> getBacklogById(@PathVariable String backlog_id, Principal principal){
 
-		return projectTaskService.findByBacklogId(backlog_id);
+		return projectTaskService.findByBacklogId(backlog_id,principal.getName());
 	}
 
 	@GetMapping("/{backlog_id}/{project_id}")
