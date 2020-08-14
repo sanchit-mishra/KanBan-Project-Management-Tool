@@ -44,26 +44,26 @@ public class ProjectTaskController {
 	}
 
 	@GetMapping("/{backlog_id}/{project_id}")
-	public ResponseEntity<?> getProjectTaskBySequence(@PathVariable String backlog_id, @PathVariable String project_id) {
+	public ResponseEntity<?> getProjectTaskBySequence(@PathVariable String backlog_id, @PathVariable String project_id, Principal principal) {
 		
-		ProjectTask projectTask = projectTaskService.findPTByProjectSequence(backlog_id, project_id);
+		ProjectTask projectTask = projectTaskService.findPTByProjectSequence(backlog_id, project_id, principal.getName());
 		return new ResponseEntity<ProjectTask>(projectTask, HttpStatus.OK);
 		
 	}
 
 	@PatchMapping("/{backlog_id}/{project_id}")
 	public ResponseEntity<?> updateProjectTask(@Valid @RequestBody ProjectTask updateProjectTask, BindingResult result,
-											   @PathVariable String backlog_id, @PathVariable String project_id){
+											   @PathVariable String backlog_id, @PathVariable String project_id, Principal principal){
 		ResponseEntity<?> errorMap = mapValidationError.MapValidationError(result);
 		if(errorMap != null) return errorMap;
 
-		ProjectTask updatedProjectTask = projectTaskService.updatePTByProjectSequence(updateProjectTask,backlog_id,project_id);
+		ProjectTask updatedProjectTask = projectTaskService.updatePTByProjectSequence(updateProjectTask,backlog_id,project_id,principal.getName());
 		return  new ResponseEntity<ProjectTask>(updatedProjectTask,HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{backlog_id}/{project_id}")
-	public ResponseEntity<?> deleteProjectTask(@PathVariable String backlog_id, @PathVariable String project_id){
-		projectTaskService.deletePTByProjectSequence(backlog_id,project_id);
+	public ResponseEntity<?> deleteProjectTask(@PathVariable String backlog_id, @PathVariable String project_id, Principal principal){
+		projectTaskService.deletePTByProjectSequence(backlog_id,project_id,principal.getName());
 		return  new ResponseEntity<String>("Project Task with ID '"+ project_id + "' is deleted successfully",HttpStatus.OK);
 	}
 }
