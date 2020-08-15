@@ -68,7 +68,7 @@ public class ProjectTaskService {
 	}
 
 	public ProjectTask findPTByProjectSequence(String backlog_id, String project_id, String username){
-
+		//Check Backlog
 		projectService.findProjectByIdentifier(backlog_id,username);
 		//To check if ProjectTask exits or not
 		ProjectTask projectTask = projectTaskRepository.findByProjectSequence(project_id);
