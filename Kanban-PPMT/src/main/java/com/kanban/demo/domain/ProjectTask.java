@@ -39,11 +39,12 @@ public class ProjectTask {
 	@JoinColumn(name = "backlog_id", updatable = false, nullable = false)
 	@JsonIgnore
 	private Backlog backlog;
-	
-	
+
+	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date dueDate;
 	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date create_At;
+	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date update_At;
 	
 	public ProjectTask() {
