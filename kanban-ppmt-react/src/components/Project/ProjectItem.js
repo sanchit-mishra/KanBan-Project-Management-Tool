@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { deleteProject } from "../../actions/projectActions";
 
 class ProjectItem extends Component {
-  onDeleteClick = id => {
+  onDeleteClick = (id) => {
     this.props.deleteProject(id);
   };
 
@@ -15,14 +15,14 @@ class ProjectItem extends Component {
       <div className="container">
         <div className="card card-body bg-light mb-3">
           <div className="row">
-            <div className="col-2">
+            <div className="col-4">
               <span className="mx-auto">{project.projectIdentifier}</span>
             </div>
-            <div className="col-lg-6 col-md-4 col-8">
+            <div className="col-lg-6 col-md-4 col-12">
               <h3>{project.projectName}</h3>
               <p>{project.description}</p>
             </div>
-            <div className="col-md-4 d-none d-lg-block">
+            <div className="col-md-4">
               <ul className="list-group">
                 <Link to={`/projectBoard/${project.projectIdentifier}`}>
                   <li className="list-group-item board">
@@ -54,10 +54,7 @@ class ProjectItem extends Component {
 }
 
 ProjectItem.propTypes = {
-  deleteProject: PropTypes.func.isRequired
+  deleteProject: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  { deleteProject }
-)(ProjectItem);
+export default connect(null, { deleteProject })(ProjectItem);
