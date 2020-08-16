@@ -47,6 +47,7 @@ export const loginUser = (loginRequest) => async (dispatch) => {
 export const logout = (dispatch) => {
   localStorage.removeItem("jwtToken");
   setJwtToken(false);
+  this.props.history.push("/");
   dispatch({
     type: SET_USER,
     payload: {},

@@ -30,11 +30,7 @@ class Header extends Component {
             </Link>
           </li>
           <li className="nav-item">
-            <Link
-              className="nav-link"
-              to="/logout"
-              onClick={this.logout.bind(this)}
-            >
+            <Link className="nav-link" to="/" onClick={this.logout.bind(this)}>
               Logout
             </Link>
           </li>
