@@ -22,7 +22,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "https://kanban-ppmt-tool.herokuapp.com/",
   "browserslist": {
     "production": [
       ">0.2%",
