@@ -18,7 +18,7 @@ class ProjectItem extends Component {
             <div className="col-4">
               <span className="mx-auto">{project.projectIdentifier}</span>
             </div>
-            <div className="col-lg-6 col-md-4 col-12">
+            <div className="col-lg-4 col-md-4 col-8">
               <h3>{project.projectName}</h3>
               <p>{project.description}</p>
             </div>
