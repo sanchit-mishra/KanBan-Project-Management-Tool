@@ -4,6 +4,8 @@ import CreateProjectButton from "./Project/CreateProjectButton";
 import { connect } from "react-redux";
 import { getProjects } from "../actions/projectActions";
 import PropTypes from "prop-types";
+import "../App.css";
+import DashboardSvg from "../svg/ProjectDashboardSvg";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -12,6 +14,31 @@ class Dashboard extends Component {
 
   render() {
     const { projects } = this.props.project;
+    const ProjectDashboard = () => {
+      return (
+        <div>
+          {projects.map((project) => (
+            <ProjectItem key={project.id} project={project} />
+          ))}
+        </div>
+      );
+    };
+
+    const SVGDashboard = () => {
+      return (
+        <div className="col-md-6 offset-md-3">
+          <DashboardSvg className="svg-image text-center" />
+        </div>
+      );
+    };
+
+    const ProjectDashboardSVG = () => {
+      if (projects.length) {
+        return <ProjectDashboard />;
+      } else {
+        return <SVGDashboard />;
+      }
+    };
 
     return (
       <div className="projects">
@@ -21,12 +48,9 @@ class Dashboard extends Component {
               <h1 className="display-4 text-center">Projects</h1>
               <br />
               <CreateProjectButton />
-
               <br />
               <hr />
-              {projects.map(project => (
-                <ProjectItem key={project.id} project={project} />
-              ))}
+              <ProjectDashboardSVG />
             </div>
           </div>
         </div>
@@ -37,14 +61,11 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   project: PropTypes.object.isRequired,
-  getProjects: PropTypes.func.isRequired
+  getProjects: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  project: state.project
+const mapStateToProps = (state) => ({
+  project: state.project,
 });
 
-export default connect(
-  mapStateToProps,
-  { getProjects }
-)(Dashboard);
+export default connect(mapStateToProps, { getProjects })(Dashboard);

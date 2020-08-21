@@ -28,7 +28,7 @@ class Header extends Component {
   render() {
     const { validToken, user } = this.props.security;
     const collapsed = this.state.collapsed;
-    /* Tenary Operator for navbar class*/
+    /* Ternary Operator for navbar class*/
     const classOne = collapsed
       ? "collapse navbar-collapse"
       : "collapse navbar-collapse show";
@@ -41,7 +41,11 @@ class Header extends Component {
       <div className={`${classOne}`} id="mobileNav">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link className="nav-link" to="/dashboard">
+            <Link
+              className="nav-link"
+              to="/dashboard"
+              onClick={this.toggleNavbar}
+            >
               Dashboard
             </Link>
           </li>
@@ -49,7 +53,11 @@ class Header extends Component {
 
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link className="nav-link " to="/dashboard">
+            <Link
+              className="nav-link "
+              to="/dashboard"
+              onClick={this.toggleNavbar}
+            >
               <i className="fas fa-user-circle mr-1">&nbsp;{user.fullname}</i>
             </Link>
           </li>
@@ -66,12 +74,16 @@ class Header extends Component {
       <div className={`${classOne}`} id="mobileNav">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link className="nav-link " to="/register">
+            <Link
+              className="nav-link "
+              to="/register"
+              onClick={this.toggleNavbar}
+            >
               Sign Up
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/login">
+            <Link className="nav-link" to="/login" onClick={this.toggleNavbar}>
               Login
             </Link>
           </li>
@@ -88,7 +100,11 @@ class Header extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
-          <Link className="navbar-brand mr-auto" to="">
+          <Link
+            className="navbar-brand mr-auto"
+            to=""
+            onClick={this.toggleNavbar}
+          >
             <small> Personal Project Management Tool </small>
           </Link>
           <button

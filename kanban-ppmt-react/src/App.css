@@ -25,13 +25,18 @@ img {
   background-color: gainsboro;
 }
 
+.svg-image {
+  width: 300px;
+  height: 300px;
+  align-self: center;
+}
+
 .fa.fa-minus-circle {
   color: red;
 }
 
 .landing {
   position: relative;
-  /*background: url("../img/showcase.jpg") no-repeat;*/
   background-size: cover;
   background-position: center;
   height: 100vh;
