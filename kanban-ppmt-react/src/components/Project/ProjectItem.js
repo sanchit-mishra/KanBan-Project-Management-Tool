@@ -6,6 +6,7 @@ import { deleteProject } from "../../actions/projectActions";
 
 class ProjectItem extends Component {
   onDeleteClick = (id) => {
+    /* Calling project action to delete project and passing id for filtering */
     this.props.deleteProject(id);
   };
 

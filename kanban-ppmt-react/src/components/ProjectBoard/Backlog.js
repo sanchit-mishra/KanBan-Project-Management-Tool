@@ -16,6 +16,7 @@ class Backlog extends Component {
     for (let i = 0; i < tasks.length; i++) {
       //console.log(tasks[i]);
       //console.log(tasks[i].props.project_task.status);
+      /* Filtering Project Task on KanBan Board */
       if (tasks[i].props.project_task.status === "TO-DO") {
         toDo.push(tasks[i]);
       } else if (tasks[i].props.project_task.status === "IN_PROGRESS") {

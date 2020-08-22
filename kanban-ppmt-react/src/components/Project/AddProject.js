@@ -41,10 +41,12 @@ class AddProject extends Component {
       startDate: this.state.startDate,
       endDate: this.state.endDate,
     };
+    /* Calling project action for project post call */
     this.props.createProject(newProject, this.props.history);
   }
 
   render() {
+    /* Destructing errors from state */
     const { errors } = this.state;
 
     return (

@@ -46,6 +46,7 @@ class UpdateProject extends Component {
   }
 
   componentDidMount() {
+    /* Destructing Id from url parameter */
     const { id } = this.props.match.params;
     this.props.getProject(id, this.props.history);
   }

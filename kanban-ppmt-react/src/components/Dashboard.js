@@ -15,6 +15,7 @@ class Dashboard extends Component {
   render() {
     const { projects } = this.props.project;
     const ProjectDashboard = () => {
+      /* Mapping Projects into individual Project */
       return (
         <div>
           {projects.map((project) => (
@@ -25,8 +26,12 @@ class Dashboard extends Component {
     };
 
     const SVGDashboard = () => {
+      /* If No Project is there */
       return (
-        <div className="col-md-6 offset-md-3">
+        <div className="alert alert-secondary text-center">
+          <text className="custom-font">
+            Beat Procastination, Start Your Project Now!
+          </text>
           <DashboardSvg className="svg-image text-center" />
         </div>
       );
@@ -45,7 +50,7 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-center">Projects</h1>
+              <h1 className="display-4 text-center custom-font">Projects</h1>
               <br />
               <CreateProjectButton />
               <br />

@@ -21,11 +21,14 @@ class Register extends Component {
   }
 
   onChange = (e) => {
+    /* Changing state on user input */
     this.setState({ [e.target.name]: e.target.value });
   };
 
   onSubmit = (e) => {
+    /* Preventing Refresh/Redirect */
     e.preventDefault();
+    /* Creating new user object from current state */
     const newUser = {
       fullName: this.state.fullName,
       username: this.state.username,
@@ -34,16 +37,19 @@ class Register extends Component {
     };
 
     //console.log(newUser);
+    /* calling action for post call */
     this.props.registerUser(newUser, this.props.history);
   };
 
   componentDidMount() {
+    /* If token is still valid */
     if (this.props.security.validToken) {
       this.props.history.push("/dashboard");
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    /* For Validation */
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }

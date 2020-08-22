@@ -29,17 +29,20 @@ class UpdateProjectTask extends Component {
   }
 
   componentDidMount() {
+    /* Destructing backlogId and ProjectTaskId */
     const { backlog_id, pt_id } = this.props.match.params;
+    /* Calling backlog action for get projectTask request */
     this.props.getProjectTask(backlog_id, pt_id, this.props.history);
   }
 
   componentWillReceiveProps(nextProps) {
+    /* Changing state if error recieve */
     if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors,
       });
     }
-
+    /* Changing state if error not recieve */
     const {
       id,
       projectSequence,
@@ -83,7 +86,8 @@ class UpdateProjectTask extends Component {
       projectIdentifier: this.state.projectIdentifier,
       create_At: this.state.create_At,
     };
-    console.log(updateProjectTask);
+    //console.log(updateProjectTask);
+    /* Calling backlog action for patch project task request */
     this.props.updateProjectTask(
       this.state.projectIdentifier,
       this.state.projectSequence,
@@ -184,6 +188,7 @@ class UpdateProjectTask extends Component {
   }
 }
 
+/* Making props available in these component */
 UpdateProjectTask.propTypes = {
   getProjectTask: PropTypes.func.isRequired,
   updateProjectTask: PropTypes.func.isRequired,

@@ -29,11 +29,10 @@ class AddProjectTask extends Component {
     }
   }
 
-  // on change
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  //on submit
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -44,6 +43,7 @@ class AddProjectTask extends Component {
       priority: this.state.priority,
       dueDate: this.state.dueDate,
     };
+    /* Calling backlog action for project task post request */
     this.props.addProjectTask(
       this.state.projectIdentifier,
       newTask,
@@ -63,7 +63,9 @@ class AddProjectTask extends Component {
                 Back to Project Board
               </Link>
               <h4 className="display-4 text-center">Add Project Task</h4>
-              <p className="lead text-center">Project Name + Project Code</p>
+              <p className="lead text-center">
+                Project Code: {this.state.projectIdentifier}
+              </p>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input

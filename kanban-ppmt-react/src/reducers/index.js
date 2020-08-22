@@ -4,6 +4,7 @@ import projectReducer from "./projectReducer";
 import backlogReducer from "./backlogReducer";
 import securityReducer from "./securityReducer";
 
+/* Combining all the reducers */
 export default combineReducers({
   errors: errorReducer,
   project: projectReducer,

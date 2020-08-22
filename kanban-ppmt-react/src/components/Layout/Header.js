@@ -100,12 +100,10 @@ class Header extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
-          <Link
-            className="navbar-brand mr-auto"
-            to=""
-            onClick={this.toggleNavbar}
-          >
-            <small> Personal Project Management Tool </small>
+          <Link className="navbar-brand mr-auto" to="">
+            <text className="navbar-brand-size">
+              Personal Project Management Tool
+            </text>
           </Link>
           <button
             onClick={this.toggleNavbar}
@@ -113,9 +111,6 @@ class Header extends Component {
             type="button"
             data-toggle="collapse"
             data-target="#mobileNav"
-            // aria-controls="mobileNav"
-            // aria-expanded="false"
-            // aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon" />
           </button>

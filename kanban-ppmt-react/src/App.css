@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+  font-family: "Montserrat";
+}
+
 img {
   width: 100%;
 }
@@ -68,4 +74,27 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+.alert-info {
+  color: #bbb;
+  background-color: #bbb;
+}
+
+.custom-font {
+  font-family: "Montserrat";
+  font-size: 25px;
+}
+
+.btn-font {
+  font-family: "Montserrat";
+  margin-left: 4px;
+}
+
+.nav-item {
+  padding-top: 4px;
+}
+
+.navbar-brand-size {
+  font-size: 17px;
 }

@@ -28,6 +28,7 @@ class Login extends Component {
       password: this.state.password,
     };
     console.log(loginRequest);
+    /* Calling login action for authenticatio */
     this.props.loginUser(loginRequest);
   };
 
